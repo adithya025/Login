@@ -1,38 +1,40 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Create Account</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
 </head>
-<style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-    .form-style{
-       background: white;
-       padding: 30px;
-       border-radius: 12px;
-       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-       width: 300px;
-       }
-</style>
 <body>
-    <div class="form-style">
+    <div class="register-container">
+        <div class="register-header">
+            <h2>Join Us</h2>
+            <p>Create your new account in seconds.</p>
+        </div>
+        
         {% if error %}
-            <div class="error">{{error}}</div>
+            <div class="error-msg">{{error}}</div>
         {% endif %}
-        <form action=""method='POST'>
+        
+        <form action="" method="POST">
             {% csrf_token %}
-            <label for="username">Username</label>
-            <input type="text" name="username">
-            <label for="password">Password</label>
-            <input type="password" name="passsword">
-            <button type="submit">Submit</button>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Choose a username" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="passsword">Password</label>
+                <input type="password" id="passsword" name="passsword" placeholder="Create a password" required>
+            </div>
+            
+            <button type="submit" class="btn-submit">Create Account</button>
+            
+            <div class="login-link">
+                Already have an account? <a href="{% url 'index' %}">Sign in</a>
+            </div>
         </form>
     </div>
 </body>
